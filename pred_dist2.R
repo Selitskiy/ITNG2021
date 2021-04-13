@@ -139,26 +139,34 @@ ks.test(t2wr, twr)
 
 
 #Untrusted Accuracy
-sum(t2r$P1)/(length(t2r$P1) + length(t2w$P1))
+sum(tr$P1)/(length(tr$P1) + length(tw$P1))
 
 #Trusted Accuracy Prior
-(sum(t2r$P1 > thr[1])+sum(t2w$P1 <= thr[1]))/(length(t2r$P1) + length(t2w$P1))
-(sum(t2r$P1 > thr[2])+sum(t2w$P1 <= thr[2]))/(length(t2r$P1) + length(t2w$P1))
-(sum(t2r$P1 > thr[3])+sum(t2w$P1 <= thr[3]))/(length(t2r$P1) + length(t2w$P1))
+(sum(tr$P1 > thr[1]))/(length(tr$P1) + length(tw$P1))
+(sum(tr$P1 > thr[2]))/(length(tr$P1) + length(tw$P1))
+(sum(tr$P1 > thr[3]))/(length(tr$P1) + length(tw$P1))
+#Trusted Accuracy Prior TN
+(sum(tr$P1 > thr[1])+sum(tw$P1 <= thr[1]))/(length(tr$P1) + length(tw$P1))
+(sum(tr$P1 > thr[2])+sum(tw$P1 <= thr[2]))/(length(tr$P1) + length(tw$P1))
+(sum(tr$P1 > thr[3])+sum(tw$P1 <= thr[3]))/(length(tr$P1) + length(tw$P1))
 #Precision
-sum(t2r$P1 > thr[1])/(sum(t2r$P1 > thr[1]) + sum(t2w$P1 > thr[1]))
-sum(t2r$P1 > thr[2])/(sum(t2r$P1 > thr[2]) + sum(t2w$P1 > thr[2]))
-sum(t2r$P1 > thr[3])/(sum(t2r$P1 > thr[3]) + sum(t2w$P1 > thr[3]))
+sum(tr$P1 > thr[1])/(sum(tr$P1 > thr[1]) + sum(tw$P1 > thr[1]))
+sum(tr$P1 > thr[2])/(sum(tr$P1 > thr[2]) + sum(tw$P1 > thr[2]))
+sum(tr$P1 > thr[3])/(sum(tr$P1 > thr[3]) + sum(tw$P1 > thr[3]))
 #Recall
-sum(t2r$P1 > thr[1])/length(t2r$P1)
-sum(t2r$P1 > thr[2])/length(t2r$P1)
-sum(t2r$P1 > thr[3])/length(t2r$P1)
+sum(tr$P1 > thr[1])/length(tr$P1)
+sum(tr$P1 > thr[2])/length(tr$P1)
+sum(tr$P1 > thr[3])/length(tr$P1)
 
 #Percentile confirm
 sum(tw$P1 <= thr[1])/length(tw$P1)
 sum(tw$P1 <= thr[2])/length(tw$P1)
 sum(tw$P1 <= thr[3])/length(tw$P1)
 
+
+
+#Untrusted Accuracy
+sum(t2r$P1)/(length(t2r$P1) + length(t2w$P1))
 
 #Trusted Accuracy Posterior, Posterior threshold
 (sum(t2r$P1 > thrp[1])+sum(t2w$P1 <= thrp[1]))/(length(t2r$P1) + length(t2w$P1))
@@ -183,7 +191,7 @@ sum(t2w$P1 <= thrp[3])/length(t2w$P1)
 (sum(t2r$P1 > thr[1]))/(length(t2r$P1) + length(t2w$P1))
 (sum(t2r$P1 > thr[2]))/(length(t2r$P1) + length(t2w$P1))
 (sum(t2r$P1 > thr[3]))/(length(t2r$P1) + length(t2w$P1))
-#Trusted Accuracy Posterior 2, Prior threshold
+#Trusted Accuracy Posterior TN, Prior threshold
 (sum(t2r$P1 > thr[1])+sum(t2w$P1 <= thr[1]))/(length(t2r$P1) + length(t2w$P1))
 (sum(t2r$P1 > thr[2])+sum(t2w$P1 <= thr[2]))/(length(t2r$P1) + length(t2w$P1))
 (sum(t2r$P1 > thr[3])+sum(t2w$P1 <= thr[3]))/(length(t2r$P1) + length(t2w$P1))

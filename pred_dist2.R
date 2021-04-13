@@ -20,7 +20,7 @@ probs1 <- c(.75,.9,.95)
 probs2 <- c(.25,.1,.05)
 
 
-fname <- "predict_ires2_6b_nm.txt"
+fname <- "predict_an_6b_nm.txt"
 nm_test <- read.delim(fname, sep = "", header = F, na.strings = " ", fill = T)
 nr <- nrow(nm_test)
 for (i in 1:nr){
@@ -52,7 +52,7 @@ tr5 <- t1[t1$Flag == TRUE & t1$Correct_class == "S5",]
 tw5 <- t1[t1$Flag != TRUE & t1$Correct_class == "S5",]
 
 
-fname <- "predict_ires2_6b_m.txt"
+fname <- "predict_an_6b_m.txt"
 m_test <- read.delim(fname, sep = "", header = T, na.strings = " ", fill = T)
 mr <- nrow(m_test)
 for (i in 1:mr){
@@ -160,7 +160,7 @@ sum(tw$P1 <= thr[2])/length(tw$P1)
 sum(tw$P1 <= thr[3])/length(tw$P1)
 
 
-#Trusted Accuracy Posterior
+#Trusted Accuracy Posterior, Posterior threshold
 (sum(t2r$P1 > thrp[1])+sum(t2w$P1 <= thrp[1]))/(length(t2r$P1) + length(t2w$P1))
 (sum(t2r$P1 > thrp[2])+sum(t2w$P1 <= thrp[2]))/(length(t2r$P1) + length(t2w$P1))
 (sum(t2r$P1 > thrp[3])+sum(t2w$P1 <= thrp[3]))/(length(t2r$P1) + length(t2w$P1))
@@ -172,6 +172,29 @@ sum(t2r$P1 > thrp[3])/(sum(t2r$P1 > thrp[3]) + sum(t2w$P1 > thrp[3]))
 sum(t2r$P1 > thrp[1])/length(t2r$P1)
 sum(t2r$P1 > thrp[2])/length(t2r$P1)
 sum(t2r$P1 > thrp[3])/length(t2r$P1)
+
+#Percentile
+sum(t2w$P1 <= thrp[1])/length(t2w$P1)
+sum(t2w$P1 <= thrp[2])/length(t2w$P1)
+sum(t2w$P1 <= thrp[3])/length(t2w$P1)
+
+
+#Trusted Accuracy Posterior, Prior threshold
+(sum(t2r$P1 > thr[1]))/(length(t2r$P1) + length(t2w$P1))
+(sum(t2r$P1 > thr[2]))/(length(t2r$P1) + length(t2w$P1))
+(sum(t2r$P1 > thr[3]))/(length(t2r$P1) + length(t2w$P1))
+#Trusted Accuracy Posterior 2, Prior threshold
+(sum(t2r$P1 > thr[1])+sum(t2w$P1 <= thr[1]))/(length(t2r$P1) + length(t2w$P1))
+(sum(t2r$P1 > thr[2])+sum(t2w$P1 <= thr[2]))/(length(t2r$P1) + length(t2w$P1))
+(sum(t2r$P1 > thr[3])+sum(t2w$P1 <= thr[3]))/(length(t2r$P1) + length(t2w$P1))
+#Precision
+sum(t2r$P1 > thr[1])/(sum(t2r$P1 > thr[1]) + sum(t2w$P1 > thr[1]))
+sum(t2r$P1 > thr[2])/(sum(t2r$P1 > thr[2]) + sum(t2w$P1 > thr[2]))
+sum(t2r$P1 > thr[3])/(sum(t2r$P1 > thr[3]) + sum(t2w$P1 > thr[3]))
+#Recall
+sum(t2r$P1 > thr[1])/length(t2r$P1)
+sum(t2r$P1 > thr[2])/length(t2r$P1)
+sum(t2r$P1 > thr[3])/length(t2r$P1)
 
 #Percentile
 sum(t2w$P1 <= thr[1])/length(t2w$P1)
